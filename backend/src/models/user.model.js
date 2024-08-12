@@ -16,6 +16,9 @@ const userShema = new Schema(
       type: String,
       required: true,
     },
+    token: {
+      type: String,
+    },
   },
   {
     timestamps: true,
@@ -32,7 +35,7 @@ userShema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-userShema.methods.Token = function () {
+userShema.methods.generateToken = function () {
   return jwt.sign(
     {
       _id: this._id,
