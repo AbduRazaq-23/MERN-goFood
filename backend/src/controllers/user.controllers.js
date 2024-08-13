@@ -56,5 +56,46 @@ const userLogIn = asyncHandler(async (req, res) => {
     .cookie("token", token, options)
     .json(new ApiResponse(200, user, "u login successfully"));
 });
+//@dec ---user LogOut controller---
+const userLogOut = asyncHandler(async (req, res) => {
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $unset: {
+        token: 1,
+      },
+    },
+    {
+      new: true,
+    }
+  );
 
-export { userRegister, userLogIn };
+  const options = {
+    httpOnly: true,
+  };
+
+  return res
+    .status(200)
+    .clearCookie("token", options)
+    .json(new ApiResponse(200, "u logOut successfully"));
+});
+
+//@dec ---user registration controller---
+const userUpdate = asyncHandler(async (req, res) => {
+  const { userName, email } = req.body;
+
+  if (!(userName, email)) {
+    throw new ApiError(401, "fill the field");
+  }
+
+  const user = await User.findByIdAndUpdate(req.user._id, {
+    userName,
+    email,
+  });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "u register successfully"));
+});
+
+export { userRegister, userLogIn, userLogOut, userUpdate };
