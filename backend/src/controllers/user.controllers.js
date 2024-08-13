@@ -7,7 +7,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 const userRegister = asyncHandler(async (req, res) => {
   const { userName, email, password } = req.body;
 
-  if (!(userName, email, password)) {
+  if (!userName || !email || !password) {
     throw new ApiError(401, "fill the field");
   }
 
