@@ -17,7 +17,9 @@ app.use(cookieParser());
 
 //@dec routes import
 import userRoutes from "./routes/user.routes.js";
+import foodRoutes from "./routes/food.routes.js";
 
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/foods", foodRoutes);
 
 export default app;

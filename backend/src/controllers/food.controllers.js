@@ -1,0 +1,72 @@
+import { Food } from "../models/food.model.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { ApiError } from "../utils/ApiError.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
+
+//@dec ---postFood controller---
+const postFood = asyncHandler(async (req, res) => {
+  const { foodName, description, category, picture, price } = req.body;
+
+  if (!(foodName, description, category, picture, price)) {
+    throw new ApiError(401, "fill the field");
+  }
+
+  const createdFood = await Food.create({
+    foodName,
+    description,
+    category,
+    picture,
+    price,
+  });
+  return res
+    .status(200)
+    .json(new ApiResponse(200, createdFood, "post successfully"));
+});
+
+//@dec ---deleteFood controller---
+const deleteFood = asyncHandler(async (req, res) => {
+  const { foodId } = req.params;
+
+  if (!foodId) {
+    throw new ApiError(500, "food not found");
+  }
+
+  const food = await User.findByIdAndDelete(foodId);
+
+  return res
+    .status(200)
+
+    .json(new ApiResponse(200, "deleted successfully"));
+});
+
+//@dec ---updateFood controller---
+const updateFood = asyncHandler(async (req, res) => {
+  const { foodName, description, category, picture, price } = req.body;
+  const { foodId } = req.params;
+
+  if (!(foodName, description, category, picture, price)) {
+    throw new ApiError(401, "fill the field");
+  }
+
+  const updatedFood = await Food.findByIdAndUpdate(foodId, {
+    foodName,
+    description,
+    category,
+    picture,
+    price,
+  });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, updatedFood, "updated successfully"));
+});
+//@dec ---getAllFood controller---
+const getAllFood = asyncHandler(async (req, res) => {
+  const getFood = await Food.find();
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, getFood, "get all food successfully"));
+});
+
+export { postFood, deleteFood, updateFood, getAllFood };
