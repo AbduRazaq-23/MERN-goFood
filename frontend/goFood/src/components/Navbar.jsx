@@ -14,29 +14,35 @@ const Navbar = () => {
       </div>
 
       {/* Menu */}
+
       <div className="flex-1 flex justify-center">
         <ul className="flex space-x-4">
           <li className="text-white hover:text-gray-400">
-            {/* <Link to="/" className="text-white hover:text-gray-400"> */}
-            Home
-            {/* </Link> */}
-          </li>
-          <li className="text-white hover:text-gray-400">
-            {/* <Link to="/about" className="text-white hover:text-gray-400"> */}
-            MyOrder
-            {/* </Link> */}
+            <Link to="/register" className="text-white hover:text-gray-400">
+              MyOrder
+            </Link>
           </li>
         </ul>
       </div>
 
       {/* Login Button */}
-      <div className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-        {/* <Link
-          to="/login"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        > */}
-        Login
-        {/* </Link> */}
+      <div className="flex space-x-4">
+        <div className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+          <Link
+            to="/login"
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          >
+            SignIn
+          </Link>
+        </div>
+        <div className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+          <Link
+            to="/register"
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          >
+            SignUp
+          </Link>
+        </div>
       </div>
     </nav>
   );

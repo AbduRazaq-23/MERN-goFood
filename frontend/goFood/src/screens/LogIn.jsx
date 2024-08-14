@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { registerUser } from "../features/dataSlice";
+// import { useDispatch } from "react-redux";
+// import { registerUser } from "../features/dataSlice";
 
-const UserRegisterForm = () => {
-  const dispatch = useDispatch();
+const UserLogInForm = () => {
+  //   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    userName: "",
     email: "",
     password: "",
   });
@@ -24,38 +23,19 @@ const UserRegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(registerUser(formData));
+    // dispatch(registerUser(formData));
 
     setFormData("");
-    navigate("/login");
+    navigate("/");
   };
 
   return (
     <div className="h-screen flex items-center">
       <div className="w-full md:w-[30%] mx-auto   p-8 my-auto bg-white shadow-md rounded-md">
         <h2 className="text-2xl text-gray-700 text-center font-bold mb-4">
-          SignUp
+          SignIn
         </h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label
-              htmlFor="userName"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Username
-            </label>
-            <input
-              type="text"
-              id="userName"
-              name="userName"
-              placeholder="Enter userName"
-              value={formData.userName}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border text-gray-700 border-gray-300 rounded-md shadow-sm focus:outline-none bg-white focus:ring-2 focus:ring-indigo-500"
-              required
-            />
-          </div>
-
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -101,10 +81,10 @@ const UserRegisterForm = () => {
             Submit
           </button>
           <p className="text-gray-700 mt-4 text-center">
-            if u have already an account{" "}
-            <Link to="/login">
+            if u don't have an account{" "}
+            <Link to="/register">
               {" "}
-              <span className="text-blue-600">SignIn</span>
+              <span className="text-blue-600">SignUp</span>
             </Link>
           </p>
         </form>
@@ -113,4 +93,4 @@ const UserRegisterForm = () => {
   );
 };
 
-export default UserRegisterForm;
+export default UserLogInForm;
