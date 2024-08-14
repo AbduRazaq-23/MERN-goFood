@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { registerUser } from "../features/dataSlice";
 
 const UserLogInForm = () => {
-  //   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -21,9 +19,12 @@ const UserLogInForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // dispatch(registerUser(formData));
+    const response = await axios.post(
+      "http://localhost:8000/api/v1/users/login",
+      formData
+    );
 
     setFormData("");
     navigate("/");

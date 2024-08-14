@@ -1,7 +1,18 @@
-import React from "react";
 import { Link } from "react-router-dom"; // If you're using React Router
+import axios from "axios";
 
 const Navbar = () => {
+  const logOut = async () => {
+    try {
+      const response = await axios.patch(
+        "http://localhost:8000/api/v1/users/logout"
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <nav className=" bg-gray-800 p-4 flex items-center justify-between">
       {/* Logo */}
@@ -42,6 +53,15 @@ const Navbar = () => {
           >
             SignUp
           </Link>
+        </div>
+
+        <div className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+          <button
+            onClick={() => logOut()}
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          >
+            logOut
+          </button>
         </div>
       </div>
     </nav>

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { registerUser } from "../features/dataSlice";
 
 const UserRegisterForm = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -22,9 +20,14 @@ const UserRegisterForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(registerUser(formData));
+    const response = await axios.post(
+      "http://localhost:8000/api/v1/users/register",
+      formData
+    );
+
+    console.log(response.data);
 
     setFormData("");
     navigate("/login");
@@ -100,6 +103,7 @@ const UserRegisterForm = () => {
           >
             Submit
           </button>
+
           <p className="text-gray-700 mt-4 text-center">
             if u have already an account{" "}
             <Link to="/login">
