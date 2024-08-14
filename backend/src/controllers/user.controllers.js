@@ -48,7 +48,7 @@ const userLogIn = asyncHandler(async (req, res) => {
   await user.save({ validateBeforeSave: false });
 
   const options = {
-    httpOnly: true,
+    httpOnly: false,
   };
 
   return res
