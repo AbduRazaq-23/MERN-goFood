@@ -5,10 +5,26 @@ import Cookies from "js-cookie";
 
 const Navbar = () => {
   const [cookieValue, setCookieValue] = useState("");
+  const [user, setUser] = useState();
 
   useEffect(() => {
     const token = Cookies.get("token");
     setCookieValue(token);
+
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8000/api/v1/users/getuser",
+          { withCredentials: true }
+        );
+        // Log the response data
+        setUser(res.data.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUser();
   }, []);
 
   const logOut = async () => {
@@ -18,6 +34,7 @@ const Navbar = () => {
         {},
         { withCredentials: true }
       );
+
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -38,7 +55,7 @@ const Navbar = () => {
       {/* Menu */}
       {cookieValue ? (
         <p className="text-white hover:text-gray-400">
-          <Link to="/register" className="text-white hover:text-gray-400">
+          <Link to="/" className="text-white hover:text-gray-400">
             MyOrder
           </Link>
         </p>
@@ -49,12 +66,16 @@ const Navbar = () => {
       {/*  Button */}
       <div className="flex space-x-4">
         {cookieValue ? (
-          <button
-            onClick={() => logOut()}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Log Out
-          </button>
+          <div className="flex space-x-3 items-center">
+            <p>addToCart</p>
+            <button
+              onClick={() => logOut()}
+              className="bg-blue-500 text-white px-3 py-1 rounded-2xl hover:bg-blue-100 hover:text-blue-500"
+            >
+              Log Out
+            </button>
+            <p>{!user ? <span>Loading...</span> : user.userName}</p>
+          </div>
         ) : (
           <>
             <Link to="/login">

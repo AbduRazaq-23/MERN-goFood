@@ -6,12 +6,14 @@ import {
   postFood,
   deleteFood,
   updateFood,
-  getAllFood,
+  getByCategoryDessert,
+  getByCategoryAppetizer,
 } from "../controllers/food.controllers.js";
 
 router.route("/postfood").post(postFood);
 router.route("/deletefood/:foodId").delete(deleteFood);
 router.route("/updatefood/:foodId").patch(updateFood);
-router.route("/getfood").get(getAllFood);
+router.route("/getbycategorydessert").get(getByCategoryDessert);
+router.route("/getbycategoryappetizer").get(getByCategoryAppetizer);
 
 export default router;

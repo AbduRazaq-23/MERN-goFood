@@ -2,7 +2,7 @@ import axios from "axios";
 
 const Card = ({ food }) => {
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="bg-white m-1 rounded-lg shadow-lg overflow-hidden">
       <img
         src={food.picture}
         alt={food.foodName}

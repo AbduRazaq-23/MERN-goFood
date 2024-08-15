@@ -60,13 +60,39 @@ const updateFood = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, updatedFood, "updated successfully"));
 });
-//@dec ---getAllFood controller---
-const getAllFood = asyncHandler(async (req, res) => {
-  const getFood = await Food.find();
+//@dec ---getByCategoryDessert controller---
+const getByCategoryDessert = asyncHandler(async (req, res) => {
+  const getFood = await Food.aggregate([
+    {
+      $match: {
+        category: "dessert",
+      },
+    },
+  ]);
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, getFood, "get all food successfully"));
+});
+//@dec ---getByCategoryAppetizer controller---
+const getByCategoryAppetizer = asyncHandler(async (req, res) => {
+  const getFood = await Food.aggregate([
+    {
+      $match: {
+        category: "appetizer",
+      },
+    },
+  ]);
 
   return res
     .status(200)
     .json(new ApiResponse(200, getFood, "get all food successfully"));
 });
 
-export { postFood, deleteFood, updateFood, getAllFood };
+export {
+  postFood,
+  deleteFood,
+  updateFood,
+  getByCategoryDessert,
+  getByCategoryAppetizer,
+};

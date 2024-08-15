@@ -97,5 +97,18 @@ const userUpdate = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, user, "u register successfully"));
 });
+//@dec ---userGetById controller---
+const userGetById = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
 
-export { userRegister, userLogIn, userLogOut, userUpdate };
+  if (!userId) {
+    throw new ApiError(401, "u r not login");
+  }
+  const user = await User.findById(userId);
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "fetched user successfully"));
+});
+
+export { userRegister, userLogIn, userLogOut, userUpdate, userGetById };

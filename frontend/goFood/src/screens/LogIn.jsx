@@ -80,7 +80,7 @@ const UserLogInForm = () => {
             type="submit"
             className="w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
-            Submit
+            SignIn
           </button>
           <p className="text-gray-700 mt-4 text-center">
             if u don't have an account{" "}
