@@ -1,4 +1,4 @@
-import axios from "axios";
+import { IoCartOutline } from "react-icons/io5";
 
 const Card = ({ food }) => {
   return (
@@ -16,9 +16,7 @@ const Card = ({ food }) => {
         <p className="mt-2 text-sm text-gray-500">Category: {food.category}</p>
         <div className="mt-4 flex items-center justify-between">
           <span className="text-xl font-bold text-gray-900">${food.price}</span>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-            Add to Cart
-          </button>
+          <IoCartOutline className="text-3xl text-gray-700" />
         </div>
       </div>
     </div>
