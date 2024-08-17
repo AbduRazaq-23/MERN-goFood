@@ -5,7 +5,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 
 //@dec ---user registration controller---
 const userRegister = asyncHandler(async (req, res) => {
-  const { userName, email, password } = req.body;
+  const { userName, email, password, type, image } = req.body;
 
   if (!userName || !email || !password) {
     throw new ApiError(401, "fill the field");
@@ -20,6 +20,8 @@ const userRegister = asyncHandler(async (req, res) => {
     userName,
     email,
     password,
+    image,
+    type,
   });
   return res
     .status(200)

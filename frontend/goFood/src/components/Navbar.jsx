@@ -49,7 +49,7 @@ const Navbar = () => {
           <img
             src="https://cdn.pixabay.com/photo/2017/02/21/08/49/food-2085075_960_720.png"
             alt="Logo"
-            className="h-8 w-auto"
+            className="h-9 w-auto"
           />
         </div>
 
@@ -80,7 +80,15 @@ const Navbar = () => {
                   >
                     LogOut
                   </button>
-                  <p>{!user ? <span>Loading...</span> : user.userName}</p>
+                  {!user ? (
+                    <span>Loading...</span>
+                  ) : (
+                    <img
+                      className="h-9 w-9 rounded-full"
+                      src={user.image}
+                      alt={user.userName}
+                    />
+                  )}
                 </div>
               </>
             ) : (
@@ -111,7 +119,19 @@ const Navbar = () => {
             <div className="p-5  items-center space-y-4 ">
               {cookieValue ? (
                 <>
-                  <p>{!user ? <span>Loading...</span> : user.userName}</p>
+                  {!user ? (
+                    <span>Loading...</span>
+                  ) : (
+                    <div className="flex space-x-3 items-center">
+                      {" "}
+                      <img
+                        className="h-9 w-9 rounded-full"
+                        src={user.image}
+                        alt={user.userName}
+                      />
+                      <span>{user.userName}</span>
+                    </div>
+                  )}
                   <p className="text-white hover:text-gray-400 pt-10">
                     <Link to="/">MyOrder</Link>
                   </p>

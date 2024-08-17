@@ -16,6 +16,13 @@ const userShema = new Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+    },
+    type: {
+      type: String,
+      enum: ["admin", "user"],
+    },
     token: {
       type: String,
     },
