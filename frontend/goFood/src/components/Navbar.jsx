@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { IoCartOutline, IoMenu, IoClose } from "react-icons/io5";
+import { IoMenu, IoClose } from "react-icons/io5";
 
 const Navbar = () => {
   const [cookieValue, setCookieValue] = useState("");
@@ -71,17 +71,14 @@ const Navbar = () => {
             {cookieValue ? (
               <>
                 <p className="text-white hover:text-gray-400">
-                  <Link to="/" className="text-white hover:text-gray-400">
-                    MyOrder
-                  </Link>
+                  <Link to="/">MyOrder</Link>
                 </p>
                 <div className="flex items-center space-x-3">
-                  <IoCartOutline className="text-3xl" />
                   <button
                     onClick={() => logOut()}
                     className="bg-blue-500 text-white px-3 py-1 rounded-2xl hover:bg-blue-100 hover:text-blue-500"
                   >
-                    Log Out
+                    LogOut
                   </button>
                   <p>{!user ? <span>Loading...</span> : user.userName}</p>
                 </div>
@@ -89,12 +86,12 @@ const Navbar = () => {
             ) : (
               <>
                 <Link to="/login">
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                  <button className="bg-blue-500 text-white px-3 py-1 rounded-2xl hover:bg-blue-100 hover:text-blue-500">
                     Sign In
                   </button>
                 </Link>
                 <Link to="/register">
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                  <button className="bg-blue-500 text-white px-3 py-1 rounded-2xl hover:bg-blue-100 hover:text-blue-500">
                     Sign Up
                   </button>
                 </Link>
@@ -116,12 +113,9 @@ const Navbar = () => {
                 <>
                   <p>{!user ? <span>Loading...</span> : user.userName}</p>
                   <p className="text-white hover:text-gray-400 pt-10">
-                    <Link to="/" className="text-white hover:text-gray-400">
-                      MyOrder
-                    </Link>
+                    <Link to="/">MyOrder</Link>
                   </p>
                   <div className=" items-center space-y-4">
-                    <IoCartOutline className="text-3xl" />
                     <button
                       onClick={() => logOut()}
                       className="bg-blue-500 text-white px-3 py-1 rounded-2xl hover:bg-blue-100 hover:text-blue-500"
@@ -133,12 +127,12 @@ const Navbar = () => {
               ) : (
                 <div className="flex space-x-5">
                   <Link to="/login">
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    <button className="bg-blue-500 text-white px-3 py-1 rounded-2xl hover:bg-blue-100 hover:text-blue-500">
                       Sign In
                     </button>
                   </Link>
                   <Link to="/register">
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    <button className="bg-blue-500 text-white px-3 py-1 rounded-2xl hover:bg-blue-100 hover:text-blue-500">
                       Sign Up
                     </button>
                   </Link>
