@@ -112,5 +112,20 @@ const userGetById = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, user, "fetched user successfully"));
 });
+//@dec ---getAllUser controller---
+const getAllUser = asyncHandler(async (req, res) => {
+  const user = await User.find();
 
-export { userRegister, userLogIn, userLogOut, userUpdate, userGetById };
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "fetched all user successfully"));
+});
+
+export {
+  userRegister,
+  userLogIn,
+  userLogOut,
+  userUpdate,
+  userGetById,
+  getAllUser,
+};
