@@ -8,26 +8,27 @@ const Dashboard = () => {
   const [appetizerFood, setAppetizerFood] = useState();
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchData = async () => {
       try {
-        const users = await axios.get(
-          "http://localhost:8000/api/v1/users/getalluser"
-        );
-        const foodDessert = await axios.get(
-          "http://localhost:8000/api/v1/foods/getbycategorydessert"
-        );
-        const foodAppetizer = await axios.get(
-          "http://localhost:8000/api/v1/foods/getbycategoryappetizer"
-        );
+        const [users, foodDessert, foodAppetizer] = await Promise.all([
+          axios.get("http://localhost:8000/api/v1/users/getalluser", {
+            withCredentials: true,
+          }),
+          axios.get("http://localhost:8000/api/v1/foods/getbycategorydessert"),
+          axios.get(
+            "http://localhost:8000/api/v1/foods/getbycategoryappetizer"
+          ),
+        ]);
+
         setAllUser(users.data.data);
         setAllFood(foodDessert.data.data);
         setAppetizerFood(foodAppetizer.data.data);
       } catch (error) {
-        console.error("Error fetching users:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchUsers();
+    fetchData();
   }, []);
 
   return (
@@ -40,7 +41,7 @@ const Dashboard = () => {
             Add Food
           </button>
         </div>
-
+        {/* @dec getalluser */}
         <div className="bg-gray-600  p-4 rounded-md shadow-sm mb-6">
           <h3 className="text-lg font-semibold text-gray-200 mb-2">
             All Users
@@ -58,7 +59,7 @@ const Dashboard = () => {
             )}
           </div>
         </div>
-
+        {/* @dec getDessertFood */}
         <div className="bg-gray-600  p-4 rounded-md shadow-sm">
           <h3 className="text-lg font-semibold text-gray-200 mb-2">
             All Food Products
@@ -77,6 +78,7 @@ const Dashboard = () => {
             )}
           </div>
         </div>
+        {/* @dec getAppetizerFood */}
         <div className="bg-gray-600  p-4 rounded-md shadow-sm">
           <h1 className="text-lg font-semibold text-gray-200 mb-2">
             Appetizer

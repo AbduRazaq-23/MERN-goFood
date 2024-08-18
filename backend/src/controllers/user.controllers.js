@@ -114,7 +114,11 @@ const userGetById = asyncHandler(async (req, res) => {
 });
 //@dec ---getAllUser controller---
 const getAllUser = asyncHandler(async (req, res) => {
-  const user = await User.find();
+  const findAdmin = await User.findOne({ _id: req.user._id, type: "admin" });
+  if (!findAdmin) {
+    throw new ApiError(401, "u r not admin");
+  }
+  const user = await User.find().select("-password -token");
 
   return res
     .status(200)
