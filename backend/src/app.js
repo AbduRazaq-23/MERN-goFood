@@ -22,6 +22,6 @@ import orderNowRoutes from "./routes/orderNow.routes.js";
 
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/foods", foodRoutes);
-app.use("/api/v1/addtocarts", orderNowRoutes);
+app.use("/api/v1/ordernow", orderNowRoutes);
 
 export default app;
