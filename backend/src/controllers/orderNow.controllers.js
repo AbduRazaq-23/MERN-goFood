@@ -1,11 +1,11 @@
-import { AddToCart } from "../models/addToCart.model.js";
+import { Ordernow } from "../models/orderNow.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import mongoose from "mongoose";
 
-//@dec ---addToCart controller---
-const addToCarts = asyncHandler(async (req, res) => {
+//@dec ---orderNowPost controller---
+const orderNowPost = asyncHandler(async (req, res) => {
   const { foodId } = req.params;
   const userId = req.user._id;
 
@@ -13,49 +13,49 @@ const addToCarts = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Missing required parameters");
   }
 
-  const findAddToCart = await AddToCart.findOne({
+  const findOrderNow = await Ordernow.findOne({
     user: new mongoose.Types.ObjectId(userId),
     food: new mongoose.Types.ObjectId(foodId),
   });
 
-  if (findAddToCart) {
-    await AddToCart.findByIdAndDelete(findAddToCart._id);
+  if (findOrderNow) {
+    await Ordernow.findByIdAndDelete(findOrderNow._id);
     return res
       .status(200)
       .json(new ApiResponse(200, null, "removed from cart"));
   } else {
   }
-  const createAddToCart = await AddToCart.create({
+  const createOrderNow = await Ordernow.create({
     user: new mongoose.Types.ObjectId(userId),
     food: new mongoose.Types.ObjectId(foodId),
   });
 
   return res
     .status(200)
-    .json(new ApiResponse(200, createAddToCart, "added to cart"));
+    .json(new ApiResponse(200, createOrderNow, "added to cart"));
 });
 
-//@dec ---countAddToCart controller---
-const countAddToCart = asyncHandler(async (req, res) => {
+//@dec ---countOrderNowPost controller---
+const countOrderNowPost = asyncHandler(async (req, res) => {
   const userId = req.user._id;
 
   if (!userId) {
     throw new ApiError(400, "Missing required parameters");
   }
 
-  const countCart = await AddToCart.aggregate([
+  const countOrder = await Ordernow.aggregate([
     {
       $match: {
         user: new mongoose.Types.ObjectId(userId),
       },
     },
     {
-      $count: "addedToCart",
+      $count: "countOrder",
     },
   ]);
   return res
     .status(200)
-    .json(new ApiResponse(200, countCart, "fetched total add to cart"));
+    .json(new ApiResponse(200, countOrder, "fetched total order"));
 });
 
-export { addToCarts, countAddToCart };
+export { orderNowPost, countOrderNowPost };

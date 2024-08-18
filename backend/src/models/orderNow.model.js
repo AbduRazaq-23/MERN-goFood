@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const addToCartSchema = new Schema({
+const OrderNowSchema = new Schema({
   user: {
     type: mongoose.Types.ObjectId,
     ref: "User",
@@ -11,4 +11,4 @@ const addToCartSchema = new Schema({
   },
 });
 
-export const AddToCart = mongoose.model("AddToCart", addToCartSchema);
+export const Ordernow = mongoose.model("Ordernow", OrderNowSchema);
