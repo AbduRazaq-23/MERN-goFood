@@ -31,7 +31,7 @@ const deleteFood = asyncHandler(async (req, res) => {
     throw new ApiError(500, "food not found");
   }
 
-  const food = await User.findByIdAndDelete(foodId);
+  const food = await Food.findByIdAndDelete(foodId);
 
   return res
     .status(200)
