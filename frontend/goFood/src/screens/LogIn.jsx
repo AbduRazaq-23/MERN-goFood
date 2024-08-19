@@ -28,8 +28,9 @@ const UserLogInForm = () => {
         { withCredentials: true }
       );
 
-      setFormData({ email: "", password: "", type: "" });
-      navigate("/");
+      response.data.data.type === "admin"
+        ? navigate("/dashboard")
+        : navigate("/");
     } catch (error) {
       console.error("Error logging in:", error);
     }
