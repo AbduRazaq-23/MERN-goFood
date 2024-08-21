@@ -1,11 +1,12 @@
-import Home from "./screens/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import Home from "./screens/Home";
 import UserRegisterForm from "./screens/Register";
 import UserLogInForm from "./screens/LogIn";
+
+// protected routes import
 import Dashboard from "./screens/Dashboard";
 import AddFoodForm from "./screens/addFoodForm";
-
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UpdateFoodForm from "./screens/UpdateFoodForm";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
