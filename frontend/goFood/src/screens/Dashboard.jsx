@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
   const [allUser, setAllUser] = useState();
   const [allFood, setAllFood] = useState();
+  const [show, setShow] = useState(false);
   const [appetizerFood, setAppetizerFood] = useState();
 
   useEffect(() => {
@@ -56,23 +57,25 @@ const Dashboard = () => {
           <h3 className="text-lg font-semibold text-gray-200 mb-2">
             All Users
           </h3>
-          <div className="text-gray-300">
-            {!allUser ? (
-              <p>loading</p>
-            ) : (
-              allUser.map((user) => (
-                <div className="m-2 flex justify-between" key={user._id}>
-                  <div>
-                    <p>Name : {user.userName}</p>
-                    <p>Email : {user.email}</p>
-                  </div>
-                  <button className="bg-gray-700 h-8 px-2 rounded-lg hover:bg-red-500 hover:text-gray-800">
-                    delete
-                  </button>
-                </div>
-              ))
-            )}
-          </div>
+
+          {!allUser ? (
+            <p>loading</p>
+          ) : (
+            allUser.map((user) => (
+              <div
+                className="m-1 flex justify-between bg-slate-700 px-2 py-1 items-center rounded-lg"
+                key={user._id}
+              >
+                <ul>
+                  <li className="font-bold"> {user.userName}</li>
+                  <li className="text-sm"> {user.email}</li>
+                </ul>
+                <button className="bg-gray-600 h-8 px-2 rounded-lg hover:bg-red-500 hover:text-gray-800">
+                  delete
+                </button>
+              </div>
+            ))
+          )}
         </div>
         {/* @dec getDessertFood */}
         <div className="bg-gray-600  p-4 rounded-md shadow-sm">
