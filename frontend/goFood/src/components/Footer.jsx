@@ -14,7 +14,7 @@ const Footer = () => {
       <ul className="ml-2 md:block">
         <li className="font-thin md:font-bold">Contact:</li>
         <li className="font-thin md:font-light">phone</li>
-        <li className="font-thin md:font-light">+92306501190</li>
+        <li className="font-thin md:font-light">+923065011190</li>
         <li className="font-thin md:font-light">email</li>
         <li className="font-thin md:font-light">abdurazaq.dev23@gmail.com</li>
       </ul>
