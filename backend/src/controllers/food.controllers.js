@@ -41,24 +41,23 @@ const deleteFood = asyncHandler(async (req, res) => {
 
 //@dec ---updateFood controller---
 const updateFood = asyncHandler(async (req, res) => {
-  const { foodName, description, category, picture, price } = req.body;
   const { foodId } = req.params;
 
-  if (!(foodName, description, category, picture, price)) {
-    throw new ApiError(401, "fill the field");
-  }
-
-  const updatedFood = await Food.findByIdAndUpdate(foodId, {
-    foodName,
-    description,
-    category,
-    picture,
-    price,
-  });
+  const updatedFood = await Food.findByIdAndUpdate(foodId, req.body);
 
   return res
     .status(200)
     .json(new ApiResponse(200, updatedFood, "updated successfully"));
+});
+//@dec ---getById controller---
+const getById = asyncHandler(async (req, res) => {
+  const { foodId } = req.params_id;
+
+  const getFood = await Food.findById(foodId);
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, getFood, "get all food successfully"));
 });
 //@dec ---getByCategoryDessert controller---
 const getByCategoryDessert = asyncHandler(async (req, res) => {
@@ -93,6 +92,7 @@ export {
   postFood,
   deleteFood,
   updateFood,
+  getById,
   getByCategoryDessert,
   getByCategoryAppetizer,
 };
