@@ -51,7 +51,7 @@ const updateFood = asyncHandler(async (req, res) => {
 });
 //@dec ---getById controller---
 const getById = asyncHandler(async (req, res) => {
-  const { foodId } = req.params_id;
+  const { foodId } = req.params;
 
   const getFood = await Food.findById(foodId);
 
