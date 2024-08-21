@@ -7,6 +7,7 @@ import Dashboard from "./screens/Dashboard";
 import AddFoodForm from "./screens/addFoodForm";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UpdateFoodForm from "./screens/UpdateFoodForm";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/addfood" element={<AddFoodForm />} />
+        <Route path="/foodupdate/:id" element={<UpdateFoodForm />} />
       </Routes>
     </Router>
   );
