@@ -1,4 +1,3 @@
-import Navbar from "./components/Navbar";
 import Home from "./screens/Home";
 
 import UserRegisterForm from "./screens/Register";
@@ -8,6 +7,7 @@ import AddFoodForm from "./screens/addFoodForm";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UpdateFoodForm from "./screens/UpdateFoodForm";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
   return (
@@ -17,9 +17,19 @@ function App() {
         <Route path="/register" element={<UserRegisterForm />} />
         <Route path="/login" element={<UserLogInForm />} />
 
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/addfood" element={<AddFoodForm />} />
-        <Route path="/foodupdate/:id" element={<UpdateFoodForm />} />
+        {/* protectedRoutes  */}
+        <Route
+          path="/dashboard"
+          element={<ProtectedRoutes Component={Dashboard} />}
+        />
+        <Route
+          path="/addfood"
+          element={<ProtectedRoutes Component={AddFoodForm} />}
+        />
+        <Route
+          path="/foodupdate/:id"
+          element={<ProtectedRoutes Component={UpdateFoodForm} />}
+        />
       </Routes>
     </Router>
   );
