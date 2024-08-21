@@ -16,7 +16,7 @@ const Card = ({ food }) => {
         <p className="mt-2 text-sm text-gray-500">Category: {food.category}</p>
         <div className="mt-4 flex items-center justify-between">
           <span className="text-xl font-bold text-gray-900">${food.price}</span>
-          <button className="text-gray-900 border px-2 py-1 rounded-lg hover:text-white hover:bg-blue-600">
+          <button className="text-gray-900 border px-2 py-1 rounded-lg hover:text-white hover:bg-gray-700">
             Order now
           </button>
         </div>

@@ -40,6 +40,11 @@ const Dashboard = () => {
       <div className="w-full max-w-7xl mx-auto p-4 mt-5">
         <div className="flex justify-between items-center bg-gray-600 p-4 rounded-md shadow-sm mb-6">
           <h2 className="text-xl font-semibold text-gray-200">Dashboard</h2>
+          <Link to={"/"}>
+            <button className="bg-gray-700 text-gray-200 rounded-xl px-4 py-2 hover:bg-gray-800">
+              home
+            </button>
+          </Link>
           <Link to={"/addfood"}>
             <button className="bg-gray-700 text-gray-200 rounded-xl px-4 py-2 hover:bg-gray-800">
               Add Food

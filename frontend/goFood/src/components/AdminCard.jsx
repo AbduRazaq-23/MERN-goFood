@@ -28,7 +28,7 @@ const Card = ({ food }) => {
         <div className="mt-4 flex items-center justify-between">
           <span className="text-xl font-bold text-gray-900">${food.price}</span>
           <Link to={`/foodupdate/${food._id}`}>
-            <button className="text-gray-900 border px-2 py-1 rounded-lg hover:text-white hover:bg-blue-600">
+            <button className="text-gray-900 border px-2 py-1 rounded-lg hover:text-white hover:bg-gray-600">
               update
             </button>
           </Link>
